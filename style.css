@@ -6,6 +6,7 @@
 }
 
 body {
+  padding-top: 70px;
   background: #0b0e11;
   color: #ffffff;
   scroll-behavior: smooth;
@@ -15,6 +16,7 @@ body {
 nav {
   position: fixed;
   top: 0;
+  height: 70px;
   width: 100%;
   padding: 1rem 3rem;
   display: flex;
@@ -368,11 +370,11 @@ nav {
 }
 
 .timeline-item-alt.left::before {
-  right: -7px;
+  right: -8px;
 }
 
 .timeline-item-alt.right::before {
-  left: -7px;
+  left: -8px;
 }
 
 /* Content */
@@ -422,7 +424,7 @@ nav {
   }
 
   .timeline-item-alt::before {
-    left: 13px;
+    left: 20px;
   }
 }
 
@@ -502,4 +504,26 @@ justify-content:center;
 flex-direction:column;
 }
 
+}
+
+
+/* Hamburger animation */
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: rgb(2,185,98);
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+  transform: rotate(45deg) translate(5px,5px);
+}
+
+.hamburger.active span:nth-child(2){
+  opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+  transform: rotate(-45deg) translate(5px,-5px);
 }
