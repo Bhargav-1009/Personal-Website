@@ -1,62 +1,91 @@
-/* ================= INTERSECTION OBSERVER ANIMATIONS ================= */
+/* ANIMATION OBSERVER */
 
-const animatedElements = document.querySelectorAll(".animate");
+const animated = document.querySelectorAll(".animate")
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      } else {
-        /* 🔥 IMPORTANT: remove class when out of view
-           This allows animation to re-trigger EVERY time */
-        entry.target.classList.remove("show");
-      }
-    });
-  },
-  {
-    threshold: 0.2
-  }
-);
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
 
-animatedElements.forEach(el => observer.observe(el));
+if(entry.isIntersecting){
+entry.target.classList.add("show")
+}
+else{
+entry.target.classList.remove("show")
+}
+
+})
+},{threshold:0.2})
+
+animated.forEach(el=>observer.observe(el))
 
 
-/* ================= ACTIVE NAV LINK ================= */
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll", () => {
-  let current = "";
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    if (scrollY >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
+/* NAV ACTIVE LINK */
 
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href").includes(current)) {
-      link.classList.add("active");
-    }
-  });
-});
+const sections=document.querySelectorAll("section")
+const navLinks=document.querySelectorAll(".nav-links a")
+
+window.addEventListener("scroll",()=>{
+
+let current=""
+
+sections.forEach(section=>{
+
+if(scrollY>=section.offsetTop-150){
+current=section.id
+}
+
+})
+
+navLinks.forEach(link=>{
+link.classList.remove("active")
+if(link.getAttribute("href").includes(current)){
+link.classList.add("active")
+}
+})
+
+})
 
 
-/* ================= RIPPLE EFFECT ================= */
-document.querySelectorAll(".ripple").forEach(button => {
-  button.addEventListener("click", function (e) {
-    const ripple = document.createElement("span");
-    ripple.className = "ripple-effect";
-    this.appendChild(ripple);
 
-    const x = e.clientX - this.offsetLeft;
-    const y = e.clientY - this.offsetTop;
+/* RIPPLE BUTTON */
 
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
+document.querySelectorAll(".ripple").forEach(btn=>{
 
-    setTimeout(() => ripple.remove(), 600);
-  });
-});
+btn.addEventListener("click",function(e){
+
+const ripple=document.createElement("span")
+ripple.className="ripple-effect"
+
+this.appendChild(ripple)
+
+const x=e.clientX-this.offsetLeft
+const y=e.clientY-this.offsetTop
+
+ripple.style.left=`${x}px`
+ripple.style.top=`${y}px`
+
+setTimeout(()=>ripple.remove(),600)
+
+})
+
+})
+
+
+
+/* MOBILE NAV */
+
+const hamburger=document.getElementById("hamburger")
+const navLinksMenu=document.getElementById("navLinks")
+
+hamburger.addEventListener("click",()=>{
+navLinksMenu.classList.toggle("active")
+})
+
+
+/* CLOSE MENU AFTER CLICK */
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+link.addEventListener("click",()=>{
+navLinksMenu.classList.remove("active")
+})
+})
