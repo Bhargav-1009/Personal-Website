@@ -370,11 +370,11 @@ nav {
 }
 
 .timeline-item-alt.left::before {
-  right: -8px;
+  right: -7px;
 }
 
 .timeline-item-alt.right::before {
-  left: -8px;
+  left: -7px;
 }
 
 /* Content */
@@ -424,7 +424,7 @@ nav {
   }
 
   .timeline-item-alt::before {
-    left: 20px;
+    left: 13px;
   }
 }
 
@@ -507,7 +507,14 @@ flex-direction:column;
 }
 
 
-/* Hamburger animation */
+/* ================= HAMBURGER ================= */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
 
 .hamburger span {
   width: 25px;
@@ -516,14 +523,30 @@ flex-direction:column;
   transition: 0.3s;
 }
 
-.hamburger.active span:nth-child(1){
-  transform: rotate(45deg) translate(5px,5px);
-}
+/* ================= MOBILE NAV ================= */
 
-.hamburger.active span:nth-child(2){
-  opacity:0;
-}
+@media (max-width: 768px) {
 
-.hamburger.active span:nth-child(3){
-  transform: rotate(-45deg) translate(5px,-5px);
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: #0b0e11;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: right 0.4s ease;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
 }
